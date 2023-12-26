@@ -4,7 +4,7 @@
 Vita3K_emuName="Vita3K"
 Vita3K_emuType="Binary"
 Vita3K_emuPath="$HOME/Applications/Vita3K"
-Vita3K_configFile="$HOME/Applications/Vita3K/config.yml"
+Vita3K_configFile="$HOME/.config/Vita3K/config.yml"
 
 #cleanupOlderThings
 Vita3K_cleanup(){
@@ -15,7 +15,7 @@ Vita3K_cleanup(){
 Vita3K_install(){
     echo "Begin Vita3K Install"
     local showProgress="$1"
-    if installEmuBI "Vita3K" "$(getReleaseURLGH "Vita3K/Vita3K" "ubuntu-latest.zip")" "Vita3K" "zip" "$showProgress"; then
+    if installEmuBI "Vita3K" "https://github.com/Vita3K/Vita3K/releases/download/continuous/ubuntu-latest.zip" "Vita3K" "zip" "$showProgress"; then
         unzip -o "$HOME/Applications/Vita3K.zip" -d "$Vita3K_emuPath" && rm -rf "$HOME/Applications/Vita3K.zip"
         chmod +x "$Vita3K_emuPath/Vita3K"
     else
@@ -27,7 +27,7 @@ Vita3K_install(){
 Vita3K_init(){
     echo "Begin Vita3K Init"
 
-    configEmuAI "Vita3K" "config" "$HOME/Applications/Vita3K" "$EMUDECKGIT/configs/Vita3K" "true"
+    configEmuAI "Vita3K" "config" "$HOME/.config/Vita3K" "$EMUDECKGIT/configs/Vita3K" "true"
     Vita3K_setEmulationFolder
     Vita3K_setupStorage
     Vita3K_setupSaves #?
@@ -38,7 +38,7 @@ Vita3K_init(){
 Vita3K_update(){
     echo "Begin Vita3K update"
 
-    configEmuAI "yuzu" "config" "$HOME/.config/Vita3K" "$EMUDECKGIT/configs/Vita3K"
+    configEmuAI "Vita3K" "config" "$HOME/.config/Vita3K" "$EMUDECKGIT/configs/Vita3K"
 
     Vita3K_setEmulationFolder
     Vita3K_setupStorage
@@ -60,7 +60,7 @@ Vita3K_setEmulationFolder(){
 #SetupSaves
 Vita3K_setupSaves(){
     echo "Begin Vita3K save link"
-    #moveSaveFolder Vita3K saves ??????
+    linkToSaveFolder Vita3K saves "$storagePath/Vita3K/ux0/user/00/savedata"
 }
 
 

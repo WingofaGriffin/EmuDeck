@@ -14,6 +14,7 @@ PCSX2QT_cleanup() {
 PCSX2QT_install() {
 	echo "Begin PCSX2-QT Install"
 	local showProgress="$1"
+	
 	if installEmuAI "pcsx2-Qt" "$(getReleaseURLGH "PCSX2/pcsx2" "Qt.AppImage")" "" "$showProgress"; then #pcsx2-Qt.AppImage
 		:
 	else
